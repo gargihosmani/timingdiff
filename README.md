@@ -2,6 +2,11 @@
 
 **`git diff`, but for timing closure.**
 
+**[Try it live in your browser →](https://gargihosmani.github.io/timingdiff/)**
+Drop in your own two reports, or click "try it with sample data." Everything
+runs client-side — your files are parsed entirely in the browser and never
+uploaded anywhere.
+
 `timingdiff` compares two STA (Static Timing Analysis) reports — from
 [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) or
 PrimeTime — and renders an interactive, visual diff: which paths got
@@ -72,6 +77,7 @@ timingdiff samples/before.rpt samples/after.rpt -o demo.html --open
 1. **`parser.py`** reads a `report_checks`-style text report and extracts each timing path: startpoint, endpoint, path group, the incremental-delay stage table, and the final slack.
 2. **`diff.py`** matches paths across the two reports by `(startpoint, endpoint, path group)`, computes the slack delta, and positionally aligns each path's stage rows to flag which cell delays changed (and whether the cell type itself changed, e.g. a resize during ECO).
 3. **`report.py`** renders everything into one HTML file: sortable/filterable path list, per-path "waterfall" of stage deltas, and an expandable git-diff-colored stage table.
+4. **`docs/index.html` + `docs/timingdiff-core.js`** are a from-scratch JavaScript port of steps 1–2, so the [live demo](https://gargihosmani.github.io/timingdiff/) can parse and diff reports entirely client-side — no server, no install, and your files never leave your browser. The two implementations are kept in sync manually; if you change the parsing/diff logic in Python, mirror it in `timingdiff-core.js`.
 
 ## Development
 
