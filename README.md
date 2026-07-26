@@ -2,6 +2,8 @@
 
 **`git diff`, but for timing closure.**
 
+**[View live demo →](https://gargihosmani.github.io/timingdiff/)**
+
 `timingdiff` compares two STA (Static Timing Analysis) reports — from
 [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) or
 PrimeTime — and renders an interactive, visual diff: which paths got
