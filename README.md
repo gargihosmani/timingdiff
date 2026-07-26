@@ -25,12 +25,30 @@ scan in seconds.
 ![timingdiff expanded row](docs/screenshot-expanded.png)
 </details>
 
-## Why
+## What this actually does (plain English)
 
-- **Zero setup to view.** Output is a single self-contained HTML file — no server, no build step, works offline once generated.
-- **Sorts regressions to the top.** The worst timing regression across your whole design is always the first thing you see.
-- **Stage-level attribution.** Click into any path to see a git-diff-style, colored breakdown of every cell/net delay, so you know exactly where the delta came from — not just that the path got worse.
-- **CI-friendly.** `--fail-on-regression` exits non-zero if any path worsened or newly violates timing, and `--json` dumps the raw diff for scripting.
+Computer chips only work if every signal inside them arrives exactly on time —
+we're talking billionths of a second. Engineers run a check that tells them
+whether every signal made its deadline, and by how much room to spare. Every
+time they tweak the design, they have to re-run that check and compare it to
+the old one, to make sure nothing that used to work just broke.
+
+Today, that comparison is usually done by eye — squinting at two giant text
+files side by side. `timingdiff` automates that: feed it the "before" and
+"after" checks, and it instantly shows you what got faster, what got slower,
+what's new, and what disappeared — and exactly which step of each signal's
+path is responsible for the change.
+
+Think of it like "track changes," but for chip timing instead of a Word doc.
+
+## Why it's useful
+
+- **Saves time.** No more manually diffing two text files line by line.
+- **Nothing to install to view a report.** Open a single HTML file, or use it straight in the browser.
+- **Sorts the important stuff to the top.** The worst regression in your whole design is always the first thing you see — you don't have to go hunting for it.
+- **Shows *where*, not just *that*.** Click into any path and see exactly which cell or stage absorbed the delay, instead of just "it got worse."
+- **Free and open source.** Anyone can use it, read the code, or extend it.
+- **Fits into automated workflows.** Can be wired into a CI pipeline to automatically flag timing regressions before they get merged.
 
 ## Install
 
